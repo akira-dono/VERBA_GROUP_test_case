@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
-const {createUser, validateUser} = require("./db");
+const createUser = require("./db");
+const validateUser = require("./validate");
 
 
 const app = express();
@@ -13,6 +14,7 @@ app.get("/", async (req, res) => {
         res.send("Пользователь был добавлен в базу данных")
     } catch (error) {
         console.error(error);
+        res.status(500).send('Что-то пошло не так.');
     }
 });
 
